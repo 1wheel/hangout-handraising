@@ -3,6 +3,7 @@ var participants;		//people currently running an instance of the hangout
 gapi.hangout.onApiReady.add(function(eventObj){
 	if (eventObj.isApiReady) {
 		participants = gapi.hangout.enabledParicipants;
+		console.log(participants);
 		printParticipants();
 	}
 });
