@@ -13,5 +13,5 @@ function printParticipants(){
 	for (var i = 0; i < participants.length; i++){
 		members = members + participants[i].person.displayName;
 	}
-	document.getElementById('particpants').innerHTML = members;
+	document.getElementById('particpantsList').innerHTML = members;
 }
