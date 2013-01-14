@@ -41,8 +41,8 @@ greenDot.onLoad.add( function(event) {
 // of the video feed.
 var greenDotOverlay = greenDot.createOverlay(
 	{'scale':
-		{'magnitude': 0.5, 'reference': gapi.hangout.av.effects.ScaleReference.WIDTH}});
+		{'magnitude': 0.25, 'reference': gapi.hangout.av.effects.ScaleReference.WIDTH}});
 
 // Place the text x-centered and halfway down the frame
-greenDotOverlay.setPosition(0, 0.25);
+greenDotOverlay.setPosition(.4, -.35);
 greenDotOverlay.setVisible(true);
