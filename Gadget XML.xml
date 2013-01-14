@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Module>
+  <ModulePrefs title="Your App Name">
+    <Require feature="rpc"/>
+    <Require feature="views"/>
+  </ModulePrefs>
+  <Content type="html">
+    <![CDATA[
+	<script src="//hangoutsapi.talkgadget.google.com/hangouts/_/api/hangout.js?v=1.1"></script>
+    
+	<link rel="stylesheet" href="https://raw.github.com/1wheel/hangout-boardgames/master/footer.css" />	
+	<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Hangout Handraising</title>
+	<script type="text/javascript" src="https://raw.github.com/1wheel/hangout-boardgames/master/gapiWrapper.js"></script>
+</head>
+
+<body id="body">    
+    Hello World
+
+</body>​
+</html>
+
+
+    ]]>
+  </Content>
+</Module>
