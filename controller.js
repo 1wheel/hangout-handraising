@@ -24,3 +24,25 @@ function printParticipants(){
 	document.getElementById('particpantsList').innerHTML = members;
 } 
 
+// Allocate image resource
+var greenDot = gapi.hangout.av.effects.createImageResource('http://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png');
+
+// Use an onLoad handler
+greenDot.onLoad.add( function(event) {
+	if ( !event.isLoaded ) {
+		alert("Could not load your overlay.");
+		greenDot.dispose();
+	} 
+	else {
+		alert("Overlay loaded.");
+	}});
+
+// Create a statically positioned overlay that will be 50% of the width
+// of the video feed.
+var greenDotOverlay = greenDot.createOverlay(
+	{'scale':
+		{'magnitude': 0.5, 'reference': gapi.hangout.av.effects.ScaleReference.WIDTH}});
+
+// Place the text x-centered and halfway down the frame
+greenDotOverlay.setPosition(0, 0.25);
+greenDotOverlay.setVisible(true);
