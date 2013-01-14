@@ -14,12 +14,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Hangout Handraising</title>
-	<script type="text/javascript" src="https://raw.github.com/1wheel/hangout-boardgames/master/gapiWrapper.js"></script>
+	<script type="text/javascript" src="https://raw.github.com/1wheel/hangout-handraising/master/controller.js"></script>
 </head>
 
 <body id="body">    
     Hello World
-
+    <div id="partipantsList"></div>
 </body>​
 </html>
 
