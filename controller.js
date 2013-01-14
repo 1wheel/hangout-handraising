@@ -8,6 +8,7 @@ gapi.hangout.onApiReady.add(function(eventObj){
 }
 
 function printParticipants(){
+	var members = "";
 	for (var i = 0; i < _participants.length; i++){
 		members = members + _participants[i].displayName;
 	}
