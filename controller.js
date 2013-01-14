@@ -5,8 +5,16 @@ gapi.hangout.onApiReady.add(function(eventObj){
 		participants = gapi.hangout.getEnabledParticipants();
 		console.log(participants);
 		printParticipants();
+
+		gapi.hangout.onParticipantsChanged.add(onParticipantsChange);
 	}
 });
+
+var onParticipantsChange = function(eventObj) {
+	participants = eventObj.participants;
+	printParticipants();
+};
+
 
 function printParticipants(){
 	var members = "";
@@ -14,4 +22,5 @@ function printParticipants(){
 		members = members + participants[i].person.displayName;
 	}
 	document.getElementById('particpantsList').innerHTML = members;
-}
+} 
+
