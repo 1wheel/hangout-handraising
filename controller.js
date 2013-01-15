@@ -28,7 +28,6 @@ gapi.hangout.onApiReady.add(function(eventObj){
 
 function onParticipantsChange(eventObj) {
 	participants = eventObj.participants;
-	printParticipants();
 
 	onServerUpdate();
 };
@@ -108,7 +107,7 @@ function printParticipants(){
 		members = members + participants[i].person.displayName + '</br>';
 	}
 	for (var i = 0; i < participants.length; i++){
-		if (queue.indexOf(participants[i].id) != -1){
+		if (queue.indexOf(participants[i].id) == -1){
 			members = members + participants[i].person.displayName + '</br>';
 		}
 	}
