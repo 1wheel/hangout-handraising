@@ -34,17 +34,20 @@ function onParticipantsChange(eventObj) {
 function onDataChange (eventObj){
 	var state = gapi.hangout.data.getState();
 	queue = JSON.parse(state.queue);
-	timeOut = JSON.parse(state.timeOut);
+	if (state.timeOut){
+		timeOut = JSON.parse(state.timeOut);
+	}
 }
 
 function onServerUpdate(){
+	buttonDisabled = false;
 	printParticipants();
 	clearOverlay();
-	var queuePosition = currentQueuePosition(gapi.hangout.getParticipantId());
+	var queuePosition = queue.indexOf(gapi.hangout.getParticipantId());
 	if (queuePosition == 0){
 		placeGreenDot();
 	}
-	else if (queuePosition != -1){
+	else if (queuePosition > 0){
 		placeYellowDot();
 	}
 
@@ -68,7 +71,7 @@ function printParticipants(){
 function buttonClick(){
 	if (!buttonDisabled){
 		buttonDisabled = true;
-		var queuePosition = currentQueuePosition(gapi.hangout.getParticipantId());
+		var queuePosition = queue.indexOf(gapi.hangout.getParticipantId());
 		if (queuePosition == 0){
 			queue.shift();
 			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue)});
@@ -93,18 +96,6 @@ function placeYellowDot(){
 function clearOverlay(){
 	greenDotOverlay.setVisible(false);
 	yellowDotOverlay.setVisible(false);
-}
-
-//returns the passed id place in the queue
-//-1 if they are not currently in the queue
-function currentQueuePosition(id){
-	var rv = -1;
-	for (var i = 0; i < queue.length; i++){
-		if (queue[i].id == id){
-			rv = i;
-		}
-	}
-	return rv;
 }
 
 function isManager(){
