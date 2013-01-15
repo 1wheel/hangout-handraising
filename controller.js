@@ -55,9 +55,14 @@ function onServerUpdate(){
 	var queuePosition = queue.indexOf(gapi.hangout.getParticipantId());
 	if (queuePosition == 0){
 		placeGreenDot();
+		document.getElementById('queueButton').innerHTML = "End Early";
 	}
 	else if (queuePosition > 0){
 		placeYellowDot();
+		document.getElementById('queueButton').innerHTML = "Leave Queue";
+	}
+	else{
+		document.getElementById('queueButton').innerHTML = "Raise Hand";
 	}
 
 	//lowest order participant manages time updates 
@@ -108,5 +113,5 @@ function clearOverlay(){
 }
 
 function isManager(){
-	return (participants[0].person.id == gapi.hangout.getParticipantId());
+	return (participants[0].id == gapi.hangout.getParticipantId());
 }
