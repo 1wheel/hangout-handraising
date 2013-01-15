@@ -1,4 +1,4 @@
-var participants;		//people currently running an instance of the hangout
+var participants = [];		//people currently running an instance of the hangout
 var queue = [];				//list of participant ids waiting to speak. 0 is the current speaker
 var timeOut;			//unix time of when the current speaker's turn will end
 var currentSpeakerId;	//id of the current speaker; on updates if it doesn't match queue, manager sets new time
@@ -71,11 +71,11 @@ function buttonClick(){
 		var queuePosition = currentQueuePosition(gapi.hangout.getParticipantId());
 		if (queuePosition == 0){
 			queue.shift();
-			gapi.hangout.submitDelta({'queue':JSON.stringify(queue)});
+			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue)});
 		}
 		else if (queuePosition == -1){
 			queue.push(gapi.hangout.getParticipantId());	
-			gapi.hangout.submitDelta({'queue':JSON.stringify(queue)});
+			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue)});
 		}
 	}
 }
