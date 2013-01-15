@@ -13,7 +13,7 @@ var yellowDot = gapi.hangout.av.effects.createImageResource('data:image/png;base
 	{'scale':
 		{'magnitude': 0.15, 'reference': gapi.hangout.av.effects.ScaleReference.WIDTH}});
 
-var buttonDisabled = true;	//true when button is clicked to prevent joining the queue several times
+var buttonDisabled = false;	//true when button is clicked to prevent joining the queue several times
 
 gapi.hangout.onApiReady.add(function(eventObj){
 	if (eventObj.isApiReady) {
