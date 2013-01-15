@@ -69,15 +69,48 @@ function onServerUpdate(){
 	//and checks for disconnected queue memembers
 	if (isManager()){
 		console.log("managing update...");
+		var validSpeaker = false;
+		var updateRequired = true;
+		while (queue.length > 0 && !validSpeaker){
 
-
+			var speakerInHangout = false;
+			for (var i = 0; i < participants.length; i++){
+				if (participants[i].id == queue[0]){
+					if (!participants[i].hasAppEnabled){
+						console.log("speaker doesn't have app on");
+						queue.shift();
+						updateRequired = true;
+						speakerInHangout = true;
+					}
+					else{
+						console.log("speaker running app");
+						validSpeaker = true;
+						speakerInHangout = true;
+					}
+				}
+			}
+			if (!speakerInHangout){
+				console.log("speaker not in hangout");
+				queue.shift();
+				updateRequire = true;
+			}
+		}
+		if (updateRequired){
+			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue)});
+		}
+		//set time
 	}
 }
 
 function printParticipants(){
 	var members = "";
+	for (var i = 0; i < queue.length; i++){
+		members = members + participants[i].person.displayName + '</br>';
+	}
 	for (var i = 0; i < participants.length; i++){
-		members = members + participants[i].person.displayName;
+		if (queue.indexOf(participants[i].id) != -1){
+			members = members + participants[i].person.displayName + '</br>';
+		}
 	}
 	document.getElementById('particpantsList').innerHTML = members;
 } 
