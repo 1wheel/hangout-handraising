@@ -29,6 +29,8 @@ gapi.hangout.onApiReady.add(function(eventObj){
 function onParticipantsChange(eventObj) {
 	participants = eventObj.participants;
 	printParticipants();
+
+	onServerUpdate();
 };
 
 function onDataChange (eventObj){
@@ -37,6 +39,8 @@ function onDataChange (eventObj){
 	if (state.timeOut){
 		timeOut = JSON.parse(state.timeOut);
 	}
+
+	onServerUpdate()
 }
 
 function onServerUpdate(){
