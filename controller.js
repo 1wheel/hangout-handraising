@@ -40,7 +40,7 @@ function onDataChange (eventObj){
 function onServerUpdate(){
 	printParticipants();
 	clearOverlay();
-	var queuePosition = currentQueuePosition(gapi.hangout.getLocalParticipantId());
+	var queuePosition = currentQueuePosition(gapi.hangout.getParticipantId());
 	if (queuePosition == 0){
 		placeGreenDot();
 	}
@@ -68,13 +68,13 @@ function printParticipants(){
 function buttonClick(){
 	if (!buttonDisabled){
 		buttonDisabled = true;
-		var queuePosition = currentQueuePosition(gapi.hangout.getLocalParticipantId());
+		var queuePosition = currentQueuePosition(gapi.hangout.getParticipantId());
 		if (queuePosition == 0){
 			queue.shift();
 			gapi.hangout.submitDelta({'queue':JSON.stringify(queue)});
 		}
 		else if (queuePosition == -1){
-			queue.push(gapi.hangout.getLocalParticipantId());	
+			queue.push(gapi.hangout.getParticipantId());	
 			gapi.hangout.submitDelta({'queue':JSON.stringify(queue)});
 		}
 	}
@@ -108,5 +108,5 @@ function currentQueuePosition(id){
 }
 
 function isManager(){
-	return (participants[0].person.id == gapi.hangout.getLocalParticipantId());
+	return (participants[0].person.id == gapi.hangout.getParticipantId());
 }

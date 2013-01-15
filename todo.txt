@@ -15,8 +15,17 @@ add button join queue/end talk type
 sync queue
 
 add timer
+	utc of speaker time end synced in gapi
 
 add over lay for people in the queue?
+
+manager
+	check to see if current speaker has app running
+	if shift happens, update time
+
+first load 
+	check if slybuss
+	do anything ot queue? auto join?
 
 
 sylbuss 
