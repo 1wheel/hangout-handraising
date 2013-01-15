@@ -44,6 +44,7 @@ function onDataChange (eventObj){
 }
 
 function onServerUpdate(){
+	console.log("onServerUpdate called");
 	buttonDisabled = false;
 	printParticipants();
 	clearOverlay();
