@@ -1,4 +1,7 @@
 var participants;		//people currently running an instance of the hangout
+var queue;				//list of participant ids waiting to speak. 0 is the current speaker
+var timeOut;			//unix time of when the current speaker's turn will end
+var currentSpeakerId;	//id of the current speaker; on updates if it doesn't match queue, manager sets new time
 
 var greenDot = gapi.hangout.av.effects.createImageResource('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB90BDwMNIxL4LdEAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAuNJREFUeNrtmy2M2mAYx3/tTsxchliWnDi1kAxBhsE0aTBkbkPg0Ljhlp1CYnF3Dj03wbBnSJOaMywTXLKcOkGyICBnJrhsog9Lj7Xlo3y078s/qSx9/z+e9/N5XoMdy3Z5BpwBOaAgTw44B14CM2AC3ANDYCDPEBg5Fo+7bJ+xI9MvgBJQB97H/Lke0AH6jsU0sQBsFwMoAs0tmI6C0QJuHIs/iQAgxsvAFwnpfWgM1IDruCCMmObfAl+B1xxGd0DVsfi+VwC2y3MJxU8kQ22g6Vj83jkA2+UN8AM4IVmaAXnH4nadl8w1zX+Q6Slp5pE2DaWN2wdgu3wEuiRfXWnr9gDYLp+BS9KjS2lz/DFAaKbJvF8Nx+JqYwDSn7qkWxXH4tvaAGS0H6KGcmGzgxExzz8kdLTfdIo8DVonhA2CLYXMz6fI1koRIMvbAWqqsLhsNgI2Nj8PuLbfx94h699ALXaBssLmEW/lwAiQf//XHre0h9IYeDWPAn8EFDUwj3gsBnWBJvqo+aQLyBneBL2UcSym8wgooZ9K/i5Q1xBAHcCQc/sZeurExEta6KozEy9Lo6tyJl6qSlcVjgCOXcDL0uqqcxPIaAwgY6K5TA33AH5NTLzKDF11b6LO0fcmGpqoewC6igZHAMcuACONAYxMqcPraWi+51g8zhdCHQ0BdOYLIYC+hgD6/wBIBWZPs/Cf+iMAQrKniqrl3wvMdYOXNlJdY/H6FIDkymoaAKhFZYev8VLIqupOPBIIQMhUFQZQXSyu/u9ARCoo2gqabwcVVYedCDVRK1s0IyT7HQhAqqnyCgHIh1WSh54JSl1dRQHzlagK8shDUamwbKTYfCOqSnQpAIFwBVyk0PzFsjphWOPCRMqKphurmF8LgEBIQ/F0ZVnYbwxAIOh7ZcY3O5wmbLHUxiuGvl33Re2vzcXKDcqHs8C7PW+lx/LNbBzzsSNgIRr0vDobAkO/y9MRMBJ9ff4vhV3btM/DqFkAAAAASUVORK5CYII=');
 var greenDotOverlay = greenDot.createOverlay(
@@ -10,6 +13,8 @@ var yellowDot = gapi.hangout.av.effects.createImageResource('data:image/png;base
 	{'scale':
 		{'magnitude': 0.15, 'reference': gapi.hangout.av.effects.ScaleReference.WIDTH}});
 
+var buttonDisabled = false;	//true when button is clicked to prevent joining the queue several times
+
 gapi.hangout.onApiReady.add(function(eventObj){
 	if (eventObj.isApiReady) {
 		participants = gapi.hangout.getEnabledParticipants();
@@ -17,13 +22,40 @@ gapi.hangout.onApiReady.add(function(eventObj){
 		printParticipants();
 
 		gapi.hangout.onParticipantsChanged.add(onParticipantsChange);
+		gapi.hangout.data.onStateChanged.add(onDataChange);
 	}
 });
 
-var onParticipantsChange = function(eventObj) {
+function onParticipantsChange(eventObj) {
 	participants = eventObj.participants;
 	printParticipants();
 };
+
+function onDataChange (eventObj){
+	var state = gapi.hangout.data.getState();
+	queue = JSON.parse(state.queue);
+	timeOut = JSON.parse(state.timeOut);
+}
+
+function onServerUpdate(){
+	printParticipants();
+	clearOverlay();
+	var queuePosition = currentQueuePosition(gapi.hangout.getLocalParticipantId());
+	if (queuePosition == 0){
+		placeGreenDot();
+	}
+	else if (queuePosition != -1){
+		placeYellowDot();
+	}
+
+	//lowest order participant manages time updates 
+	//and checks for disconnected queue memembers
+	if (isManager()){
+		console.log("managing update...");
+
+
+	}
+}
 
 function printParticipants(){
 	var members = "";
@@ -32,6 +64,21 @@ function printParticipants(){
 	}
 	document.getElementById('particpantsList').innerHTML = members;
 } 
+
+function buttonClick(){
+	if (!buttonDisabled){
+		buttonDisabled = true;
+		var queuePosition = currentQueuePosition(gapi.hangout.getLocalParticipantId());
+		if (queuePosition == 0){
+			queue.shift();
+			gapi.hangout.submitDelta({'queue':JSON.stringify(queue)});
+		}
+		else if (queuePosition == -1){
+			queue.push(gapi.hangout.getLocalParticipantId());	
+			gapi.hangout.submitDelta({'queue':JSON.stringify(queue)});
+		}
+	}
+}
 
 function placeGreenDot(){
 	greenDotOverlay.setPosition(.4, -.35);
@@ -43,7 +90,23 @@ function placeYellowDot(){
 	yellowDotOverlay.setVisible(true);	
 }
 
-function clearOverLay(){
+function clearOverlay(){
 	greenDotOverlay.setVisible(false);
 	yellowDotOverlay.setVisible(false);
+}
+
+//returns the passed id place in the queue
+//-1 if they are not currently in the queue
+function currentQueuePosition(id){
+	var rv = -1;
+	for (var i = 0; i < queue.length; i++){
+		if (queue[i].id == id){
+			rv = i;
+		}
+	}
+	return rv;
+}
+
+function isManager(){
+	return (participants[0].person.id == gapi.hangout.getLocalParticipantId());
 }

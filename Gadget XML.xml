@@ -18,8 +18,9 @@
 </head>
 
 <body id="body">    
-    Hello World
     <div id="particpantsList"></div>
+
+    <button id="queueButton" onClick="buttonClick()">Join Queue</button>
 </body>​
 </html>
 

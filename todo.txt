@@ -1,0 +1,25 @@
+Sync list of partipants 
+
+display names of participants 
+	order according to queue
+	(loop through queue, then total list only taking those not in queue)
+
+add button to take the floor
+
+sync current speaker
+
+add overlay
+
+add button join queue/end talk type
+
+sync queue
+
+add timer
+
+add over lay for people in the queue?
+
+
+sylbuss 
+	what if:
+		no tabs and slybuss just scrollable onto of queue list and controls
+
