@@ -13,12 +13,12 @@ var yellowDot = gapi.hangout.av.effects.createImageResource('data:image/png;base
 	{'scale':
 		{'magnitude': 0.15, 'reference': gapi.hangout.av.effects.ScaleReference.WIDTH}});
 
-var buttonDisabled = false;	//true when button is clicked to prevent joining the queue several times
+var buttonDisabled = true;	//true when button is clicked to prevent joining the queue several times
 
 gapi.hangout.onApiReady.add(function(eventObj){
 	if (eventObj.isApiReady) {
+		buttonDisabled = false;
 		participants = gapi.hangout.getEnabledParticipants();
-		console.log(participants);
 		printParticipants();
 
 		gapi.hangout.onParticipantsChanged.add(onParticipantsChange);
@@ -40,7 +40,7 @@ function onDataChange (eventObj){
 		timeOut = JSON.parse(state.timeOut);
 	}
 	catch (e){
-		log(e);
+		console.log(e);
 		timeOut = -1;
 	}
 
