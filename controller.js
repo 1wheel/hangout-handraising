@@ -176,7 +176,7 @@ function updateTimeOutText(){
 	if (timeOut != -1 && queue.length > 0){
 		var timeDif = timeOut - new Date().getTime();
 		document.getElementById('timeLeft').innerHTML = '  - ' + Math.max(0, Math.round(timeDif/1000)) + ' secounds';
-		if (isManager && timeDif < 0{
+		if (isManager && timeDif < 0){
 			console.log("Time up!");
 			//force update iff queue is empty 
 			if (queue.length > 1){
