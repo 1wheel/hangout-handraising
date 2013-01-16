@@ -110,7 +110,6 @@ function onServerUpdate(){
 }
 
 function printParticipants(){
-	var members = "";
 	if (queue.length > 0){
 		document.getElementById('speakerName').innerHTML = getParticipantNameById(queue[0]);
 		document.getElementById('speakerDisplay').style.display = 'inline';
@@ -118,15 +117,26 @@ function printParticipants(){
 	else {
 		document.getElementById('speakerDisplay').style.display = 'none';
 	}
-	for (var i = 1; i < queue.length; i++){
-		members = members + getParticipantNameById(queue[i]) + '</br>';
+
+	var queueHTML = ""
+	if (queue.length > 1){
+		for (var i = 1; i < queue.length; i++){
+			queueHTML = queueHTML + getParticipantNameById(queue[i]) + '</br>';
+		}	
+		document.getElementById('queueMembers').innerHTML = queueHTML;
+		document.getElementById('queueMembers').style.display = 'inline';
 	}
+	else {
+		document.getElementById('queueMembers').style.display = 'none';
+	}
+	
+	var memberHTML = "";
 	for (var i = 0; i < participants.length; i++){
 		if (queue.indexOf(participants[i].id) == -1){
-			members = members + participants[i].person.displayName + '</br>';
+			memberHTML = memberHTML + participants[i].person.displayName + '</br>';
 		}
 	}
-	document.getElementById('otherParticipants').innerHTML = members;
+	document.getElementById('otherParticipants').innerHTML = memberHTML;
 } 
 
 function getParticipantNameById(id){
