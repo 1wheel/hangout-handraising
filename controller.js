@@ -113,7 +113,7 @@ function printParticipants(){
 	var members = "";
 	if (queue.length > 0){
 		document.getElementById('speakerName').innerHTML = getParticipantNameById(queue[0]);
-		document.getElementById('speakerDisplay').style.visibility = 'visibile';
+		document.getElementById('speakerDisplay').style.visibility = 'visible';
 	}
 	else {
 		document.getElementById('speakerDisplay').style.visibility = 'hidden';
