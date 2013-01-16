@@ -18,7 +18,13 @@
 </head>
 
 <body id="body">    
-    <div id="particpantsList"></div>
+    <div id="participantsList">
+      <span>
+        <span id="speakerName"></span>
+        <span id="timeLeft"></span>
+    </div>
+    <div id="otherParticipants">
+    </div>
 
     <button id="queueButton" onClick="buttonClick()">Join Queue</button>
 </body>​

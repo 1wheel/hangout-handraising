@@ -23,6 +23,8 @@ gapi.hangout.onApiReady.add(function(eventObj){
 
 		gapi.hangout.onParticipantsChanged.add(onParticipantsChange);
 		gapi.hangout.data.onStateChanged.add(onDataChange);
+
+		setInterval(updateTimeOutText, 200);
 	}
 });
 
@@ -107,16 +109,28 @@ function onServerUpdate(){
 
 function printParticipants(){
 	var members = "";
-	for (var i = 0; i < queue.length; i++){
-		members = members + participants[i].person.displayName + ((i == 0) ? '<span id = "timeoutTimer"> timeout</span>' : '' ) + '</br>';
+	if (queue.length > 0){
+		document.getElementById('speakerName') = getParticipantNameById(queue[0]);
+	}
+	for (var i = 1; i < queue.length; i++){
+		members = members + getParticipantNameById(queue[i]) + '</br>';
 	}
 	for (var i = 0; i < participants.length; i++){
 		if (queue.indexOf(participants[i].id) == -1){
 			members = members + participants[i].person.displayName + '</br>';
 		}
 	}
-	document.getElementById('particpantsList').innerHTML = members;
+	document.getElementById('participantsList').innerHTML = members;
 } 
+
+function getParticipantNameById(id){
+	for (var i = 0; i < participants.length; i++){
+		if (participants.id == id){
+			return participants[i].person.displayName;
+		}
+	}
+	return '';
+}
 
 function buttonClick(){
 	if (!buttonDisabled){
@@ -155,10 +169,9 @@ function isManager(){
 
 function updateTimeOutText(){
 	if (timeOut != -1){
-		document.getElementById('timeoutTimer').innerHTML = Math.round((timeOut - new Date.getTime()/1000));
+		document.getElementById('timeLeft').innerHTML = Math.round((timeOut - new Date.getTime()/1000));
 	}
 	else{
-		document.getElementById('timeoutTimer').innerHTML = '';
+		document.getElementById('timeLeft').innerHTML = '';
 	}
 }
-setInterval(updateTimeOutText, 200);
