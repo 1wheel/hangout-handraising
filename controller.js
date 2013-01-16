@@ -24,7 +24,7 @@ gapi.hangout.onApiReady.add(function(eventObj){
 		gapi.hangout.onParticipantsChanged.add(onParticipantsChange);
 		gapi.hangout.data.onStateChanged.add(onDataChange);
 
-		//setInterval(updateTimeOutText, 200);
+		setInterval(updateTimeOutText, 200);
 	}
 });
 
@@ -174,7 +174,7 @@ function isManager(){
 
 function updateTimeOutText(){
 	if (timeOut != -1 && queue.length > 0){
-		document.getElementById('timeLeft').innerHTML = Math.round(((timeOut - new Date().getTime()) /1000));
+		document.getElementById('timeLeft').innerHTML = '  - ' + Math.round(((timeOut - new Date().getTime()) /1000)) + ' secounds';
 	}
 	else{
 		document.getElementById('timeLeft').innerHTML = '';
