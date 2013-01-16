@@ -156,7 +156,7 @@ function isManager(){
 function updateTimeOutText(){
 	try{
 		if (timeOut != -1){
-			document.getElementById('timeout').innerHTML = Math.round((timeOut - new Date.getTime()/1000);
+			document.getElementById('timeout').innerHTML = Math.round((timeOut - new Date.getTime()/1000));
 		}
 		else{
 			document.getElementById('timeout').innerHTML = '';
