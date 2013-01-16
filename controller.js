@@ -24,7 +24,7 @@ gapi.hangout.onApiReady.add(function(eventObj){
 		gapi.hangout.onParticipantsChanged.add(onParticipantsChange);
 		gapi.hangout.data.onStateChanged.add(onDataChange);
 
-		setInterval(updateTimeOutText, 200);
+		//setInterval(updateTimeOutText, 200);
 	}
 });
 
