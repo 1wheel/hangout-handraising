@@ -24,10 +24,11 @@
         <span id="timeLeft"></span>
       </span>
       <div id="queueMembers"></div>
-      <div id="otherParticipants"></div>
+      <div id="otherParticipants"></div>    
+
+      <button id="queueButton" onClick="buttonClick()">Join Queue</button>
     </div>
 
-    <button id="queueButton" onClick="buttonClick()">Join Queue</button>
 </body>​
 </html>
 
