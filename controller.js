@@ -127,7 +127,7 @@ function printParticipants(){
 
 function getParticipantNameById(id){
 	for (var i = 0; i < participants.length; i++){
-		if (participants.id == id){
+		if (participants[i].id == id){
 			return participants[i].person.displayName;
 		}
 	}
