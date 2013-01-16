@@ -173,7 +173,7 @@ function isManager(){
 
 
 function updateTimeOutText(){
-	if (timeOut != -1 && queue.length > 0){
+	if (timeOut != -1 && document.getElementById('speakerName').innerHTML.length > 0){
 		document.getElementById('timeLeft').innerHTML = '  - ' + Math.round(((timeOut - new Date().getTime()) /1000)) + ' secounds';
 		if (isManager && timeOut < new Date().getTime()){
 			console.log("Time up!");
