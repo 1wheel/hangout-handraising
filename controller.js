@@ -202,7 +202,7 @@ function updateTimeOutText(){
 			if (queue.length > 1){
 				queue.shift();
 			}
-			sendNewSPeaker();
+			sendNewSpeaker();
 		}
 	}
 	else{
