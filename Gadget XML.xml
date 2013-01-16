@@ -29,7 +29,7 @@
     <div id="queueMembers"></div>
     <div id="otherParticipants"></div>    
 
-    <button id="queueButton" onClick="buttonClick()">Join Queue</button>
+    <button id="queueButton" onClick="buttonClick()">Raise My Hand</button>
   </div>
 
 </body>​

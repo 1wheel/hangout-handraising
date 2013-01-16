@@ -56,7 +56,7 @@ function onServerUpdate(){
 	var queuePosition = queue.indexOf(gapi.hangout.getParticipantId());
 	if (queuePosition == 0){
 		placeGreenDot();
-		document.getElementById('queueButton').innerHTML = "I Am done";
+		document.getElementById('queueButton').innerHTML = "I Am Done";
 	}
 	else if (queuePosition > 0){
 		placeYellowDot();
