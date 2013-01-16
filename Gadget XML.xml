@@ -19,7 +19,7 @@
 
 <body id="body">    
     <div id="participantsList">
-      <span>
+      <span id = "speakerDisplay">
         <span id="speakerName"></span>
         <span id="timeLeft"></span>
       </span>

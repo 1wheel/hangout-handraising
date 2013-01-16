@@ -113,9 +113,10 @@ function printParticipants(){
 	var members = "";
 	if (queue.length > 0){
 		document.getElementById('speakerName').innerHTML = getParticipantNameById(queue[0]);
+		document.getElementById('speakerDisplay').style.visibility = 'visibile';
 	}
 	else {
-		document.getElementById('speakerName').innerHTML = '';
+		document.getElementById('speakerDisplay').style.visibility = 'hidden';
 	}
 	for (var i = 1; i < queue.length; i++){
 		members = members + getParticipantNameById(queue[i]) + '</br>';
@@ -176,7 +177,7 @@ function updateTimeOutText(){
 	if (timeOut != -1 && queue.length > 0){
 		var timeDif = timeOut - new Date().getTime();
 		document.getElementById('timeLeft').innerHTML = '  - ' + Math.max(0, Math.round(timeDif/1000)) + ' secounds';
-		if (isManager && timeDif < 0){
+		if (isManager && timeDif < 0 || timeDif < 2000){
 			console.log("Time up!");
 			//force update iff queue is empty 
 			if (queue.length > 1){
