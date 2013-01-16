@@ -22,8 +22,9 @@
       <span>
         <span id="speakerName"></span>
         <span id="timeLeft"></span>
-    </div>
-    <div id="otherParticipants">
+      </span>
+      <div id="otherParticipants">
+      </div>
     </div>
 
     <button id="queueButton" onClick="buttonClick()">Join Queue</button>
