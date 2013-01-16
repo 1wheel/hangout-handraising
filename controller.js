@@ -38,11 +38,11 @@ function onDataChange (eventObj){
 	var state = gapi.hangout.data.getState();
 	queue = JSON.parse(state.queue);
 	try{
-		if (state.timeOut && state.serverTime){
-			timeOut = JSON.parse(state.timeOut) - (JSON.parse(state.serverTime) - new Date().getTime());
+		if (typeof state.timeOut === "undefined" || typeof state.timeOut === "undefined"){
+			timeOut = -1;
 		}
 		else{
-			timeOut = -1;
+			timeOut = JSON.parse(state.timeOut) - (JSON.parse(state.serverTime) - new Date().getTime());
 		}
 	}
 	catch (e){
