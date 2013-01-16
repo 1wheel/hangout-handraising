@@ -147,7 +147,7 @@ function buttonClick(){
 		}
 		else if (queuePosition == -1){
 			queue.push(gapi.hangout.getParticipantId());	
-			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue)});
+			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue), 'timeOut':JSON.stringify(new Date().getTime() + 1000*60)});
 		}
 	}
 }
@@ -171,13 +171,17 @@ function isManager(){
 	return (participants[0].id == gapi.hangout.getParticipantId());
 }
 
-
+//what happens if manager is alt tabbed?
 function updateTimeOutText(){
-	if (timeOut != -1 && document.getElementById('speakerName').innerHTML.length > 0){
-		document.getElementById('timeLeft').innerHTML = '  - ' + Math.round(((timeOut - new Date().getTime()) /1000)) + ' secounds';
-		if (isManager && timeOut < new Date().getTime()){
+	if (timeOut != -1 && queue.length > 0){
+		var timeDif = timeOut - new Date().getTime();
+		document.getElementById('timeLeft').innerHTML = '  - ' + Math.max(0, Math.round(timeDif/1000)) + ' secounds';
+		if (isManager && timeDif < 0{
 			console.log("Time up!");
-			queue.shift()
+			//force update iff queue is empty 
+			if (queue.length > 1){
+				queue.shift();
+			}
 			timeOut = new Date().getTime() + 1000*60;
 			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue), 'timeOut': JSON.stringify(timeOut)});
 		}
