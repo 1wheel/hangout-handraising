@@ -151,3 +151,19 @@ function clearOverlay(){
 function isManager(){
 	return (participants[0].id == gapi.hangout.getParticipantId());
 }
+
+
+function updateTimeOutText(){
+	try{
+		if (timeOut != -1){
+			document.getElementById('timeout').innerHTML = Math.round((timeOut - new Date.getTime()/1000);
+		}
+		else{
+			document.getElementById('timeout').innerHTML = '';
+		}
+	}
+	catch (e){
+		console.log(e);
+	}
+}
+setInterval(updateTimeOutText, 200);
