@@ -36,20 +36,19 @@ function onParticipantsChange(eventObj) {
 
 function onDataChange (eventObj){
 	var state = gapi.hangout.data.getState();
-	queue = JSON.parse(state.queue);
-	try{
-		if (typeof state.timeOut === "undefined" || typeof state.timeOut === "undefined"){
-			timeOut = -1;
-		}
-		else{
-			timeOut = JSON.parse(state.timeOut) - (JSON.parse(state.serverTime) - new Date().getTime());
-		}
-	}
-	catch (e){
-		console.log(e);
-		timeOut = -1;
+	if (!typeof state.queue === "undefined"){
+		queue = JSON.parse(state.queue);
 	}
 
+	//timeOut set to -1 if not defined
+	if (typeof state.timeOut === "undefined" || typeof state.timeOut === "undefined"){
+		console.log('valid timeouts not found');
+		timeOut = -1;
+	}
+	else{
+		timeOut = JSON.parse(state.timeOut) - (JSON.parse(state.serverTime) - new Date().getTime());
+	}
+	
 	onServerUpdate();
 }
 
