@@ -101,7 +101,7 @@ function onServerUpdate(){
 		}
 		if (updateRequired){
 			timeOut = new Date().getTime() + 1000*60;
-			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue), 'timeOut': JSON.stringify(timeOut}));
+			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue), 'timeOut': JSON.stringify(timeOut)});
 		}
 		//set time
 	}
