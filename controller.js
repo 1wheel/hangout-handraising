@@ -113,10 +113,10 @@ function printParticipants(){
 	var members = "";
 	if (queue.length > 0){
 		document.getElementById('speakerName').innerHTML = getParticipantNameById(queue[0]);
-		document.getElementById('speakerDisplay').style.visibility = 'visible';
+		document.getElementById('speakerDisplay').style.display = 'inline';
 	}
 	else {
-		document.getElementById('speakerDisplay').style.visibility = 'none';
+		document.getElementById('speakerDisplay').style.display = 'none';
 	}
 	for (var i = 1; i < queue.length; i++){
 		members = members + getParticipantNameById(queue[i]) + '</br>';
