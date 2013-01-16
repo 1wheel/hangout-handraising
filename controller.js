@@ -98,7 +98,7 @@ function onServerUpdate(){
 		}
 		if (timeOut == -1 || new Date().getTime() > timeOut){
 			console.log('new timeout value required');
-			//updateRequired = true;
+			updateRequired = true;
 		}
 		if (updateRequired){
 			console.log("sending new update");
@@ -113,6 +113,9 @@ function printParticipants(){
 	var members = "";
 	if (queue.length > 0){
 		document.getElementById('speakerName').innerHTML = getParticipantNameById(queue[0]);
+	}
+	else {
+		document.getElementById('speakerName').innerHTML = '';
 	}
 	for (var i = 1; i < queue.length; i++){
 		members = members + getParticipantNameById(queue[i]) + '</br>';
@@ -170,7 +173,7 @@ function isManager(){
 
 
 function updateTimeOutText(){
-	if (timeOut != -1){
+	if (timeOut != -1 && queue.length > 0){
 		document.getElementById('timeLeft').innerHTML = Math.round((timeOut - new Date.getTime()/1000));
 	}
 	else{
