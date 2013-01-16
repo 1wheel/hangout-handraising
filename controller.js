@@ -19,7 +19,7 @@ gapi.hangout.onApiReady.add(function(eventObj){
 	if (eventObj.isApiReady) {
 		buttonDisabled = false;
 		participants = gapi.hangout.getEnabledParticipants();
-		printParticipants();
+		onDataChange();
 
 		gapi.hangout.onParticipantsChanged.add(onParticipantsChange);
 		gapi.hangout.data.onStateChanged.add(onDataChange);
@@ -38,7 +38,7 @@ function onDataChange (eventObj){
 	var state = gapi.hangout.data.getState();
 	queue = JSON.parse(state.queue);
 	try{
-		timeOut = JSON.parse((state.timeOut) ? state.timeOut : -1);
+		timeOut = JSON.parse(state.timeOut) - (JSON.parse(state.serverTime) - new Date().getTime());
 	}
 	catch (e){
 		console.log(e);
@@ -102,11 +102,17 @@ function onServerUpdate(){
 		}
 		if (updateRequired){
 			console.log("sending new update");
-			timeOut = new Date().getTime() + 1000*60;
-			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue), 'timeOut': JSON.stringify(timeOut)});
+			sendNewSpeaker();
 		}
-		//set time
 	}
+}
+
+//sends queue and updated timestamps
+function sendNewSpeaker(){
+	timeOut = new Date().getTime() + 1000*60;
+	gapi.hangout.data.submitDelta({	'queue':JSON.stringify(queue), 
+									'timeOut': JSON.stringify(timeOut),
+									'serverTime': JSON.stringify(new Date().getTime())});
 }
 
 function printParticipants(){
@@ -158,7 +164,7 @@ function buttonClick(){
 		}
 		else if (queuePosition == -1){
 			queue.push(gapi.hangout.getParticipantId());	
-			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue), 'timeOut':JSON.stringify(new Date().getTime() + 1000*60)});
+			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue)});
 		}
 	}
 }
@@ -178,7 +184,10 @@ function clearOverlay(){
 	yellowDotOverlay.setVisible(false);
 }
 
+//only one participant should be manager; this code might need updating
+//might not be necessary at all - ok to send multiple identical updates
 function isManager(){
+	return true;
 	return (participants[0].id == gapi.hangout.getParticipantId());
 }
 
@@ -187,14 +196,13 @@ function updateTimeOutText(){
 	if (timeOut != -1 && queue.length > 0){
 		var timeDif = timeOut - new Date().getTime();
 		document.getElementById('timeLeft').innerHTML = '  - ' + Math.max(0, Math.round(timeDif/1000)) + ' secounds';
-		if (isManager && timeDif < 0 || timeDif < 2000){
+		if (isManager() && timeDif < 0 || timeDif < 2000){
 			console.log("Time up!");
 			//force update iff queue is empty 
 			if (queue.length > 1){
 				queue.shift();
 			}
-			timeOut = new Date().getTime() + 1000*60;
-			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue), 'timeOut': JSON.stringify(timeOut)});
+			sendNewSPeaker();
 		}
 	}
 	else{

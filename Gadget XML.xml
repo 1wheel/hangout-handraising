@@ -22,10 +22,10 @@
   </div>
   
   <div id="participantsList">
-    <span id = "speakerDisplay">
+    <div id = "speakerDisplay">
       <span id="speakerName"></span>
       <span id="timeLeft"></span>
-    </span>
+    </div>
     <div id="queueMembers"></div>
     <div id="otherParticipants"></div>    
 
