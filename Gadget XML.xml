@@ -17,17 +17,20 @@
 	<script type="text/javascript" src="https://raw.github.com/1wheel/hangout-handraising/master/controller.js"></script>
 </head>
 
-<body id="body">    
-    <div id="participantsList">
-      <span id = "speakerDisplay">
-        <span id="speakerName"></span>
-        <span id="timeLeft"></span>
-      </span>
-      <div id="queueMembers"></div>
-      <div id="otherParticipants"></div>    
+<body id="body">  
+  <div id="container">
+  </div>
+  
+  <div id="participantsList">
+    <span id = "speakerDisplay">
+      <span id="speakerName"></span>
+      <span id="timeLeft"></span>
+    </span>
+    <div id="queueMembers"></div>
+    <div id="otherParticipants"></div>    
 
-      <button id="queueButton" onClick="buttonClick()">Join Queue</button>
-    </div>
+    <button id="queueButton" onClick="buttonClick()">Join Queue</button>
+  </div>
 
 </body>​
 </html>
