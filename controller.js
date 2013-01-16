@@ -71,7 +71,7 @@ function onServerUpdate(){
 	if (isManager()){
 		console.log("managing update...");
 		var validSpeaker = false;
-		var updateRequired = true;
+		var updateRequired = false;
 		while (queue.length > 0 && !validSpeaker){
 
 			var speakerInHangout = false;
