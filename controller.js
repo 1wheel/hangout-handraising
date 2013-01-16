@@ -112,7 +112,7 @@ function onServerUpdate(){
 function printParticipants(){
 	var members = "";
 	if (queue.length > 0){
-		document.getElementById('speakerName') = getParticipantNameById(queue[0]);
+		document.getElementById('speakerName').innerHTML = getParticipantNameById(queue[0]);
 	}
 	for (var i = 1; i < queue.length; i++){
 		members = members + getParticipantNameById(queue[i]) + '</br>';
