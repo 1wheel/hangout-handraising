@@ -116,7 +116,7 @@ function printParticipants(){
 		document.getElementById('speakerDisplay').style.visibility = 'visible';
 	}
 	else {
-		document.getElementById('speakerDisplay').style.visibility = 'hidden';
+		document.getElementById('speakerDisplay').style.visibility = 'none';
 	}
 	for (var i = 1; i < queue.length; i++){
 		members = members + getParticipantNameById(queue[i]) + '</br>';
