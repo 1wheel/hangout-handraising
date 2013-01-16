@@ -174,7 +174,7 @@ function isManager(){
 
 function updateTimeOutText(){
 	if (timeOut != -1 && queue.length > 0){
-		document.getElementById('timeLeft').innerHTML = Math.round((timeOut - new Date().getTime() /1000));
+		document.getElementById('timeLeft').innerHTML = Math.round(((timeOut - new Date().getTime()) /1000));
 	}
 	else{
 		document.getElementById('timeLeft').innerHTML = '';
