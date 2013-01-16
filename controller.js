@@ -38,7 +38,7 @@ function onDataChange (eventObj){
 	var state = gapi.hangout.data.getState();
 	queue = JSON.parse(state.queue);
 	try{
-		timeOut = (state.timeOut) ? state.timeOut : -1;
+		timeOut = JSON.parse((state.timeOut) ? state.timeOut : -1);
 	}
 	catch (e){
 		console.log(e);
@@ -101,7 +101,7 @@ function onServerUpdate(){
 		}
 		if (updateRequired){
 			timeOut = new Date().getTime() + 1000*60;
-			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue), 'timeOut': timeOut});
+			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue), 'timeOut': JSON.stringify(timeOut}));
 		}
 		//set time
 	}
