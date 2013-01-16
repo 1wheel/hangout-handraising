@@ -120,7 +120,7 @@ function printParticipants(){
 			members = members + participants[i].person.displayName + '</br>';
 		}
 	}
-	document.getElementById('participantsList').innerHTML = members;
+	document.getElementById('otherParticipants').innerHTML = members;
 } 
 
 function getParticipantNameById(id){
