@@ -108,7 +108,7 @@ function onServerUpdate(){
 function printParticipants(){
 	var members = "";
 	for (var i = 0; i < queue.length; i++){
-		members = members + participants[i].person.displayName + ((i == 0) ? '<span id = "timeout">timeout</span>' : '' ) + '</br>';
+		members = members + participants[i].person.displayName + ((i == 0) ? '<span id = "timeoutTimer"> timeout</span>' : '' ) + '</br>';
 	}
 	for (var i = 0; i < participants.length; i++){
 		if (queue.indexOf(participants[i].id) == -1){
@@ -154,16 +154,11 @@ function isManager(){
 
 
 function updateTimeOutText(){
-	try{
-		if (timeOut != -1){
-			document.getElementById('timeout').innerHTML = Math.round((timeOut - new Date.getTime()/1000));
-		}
-		else{
-			document.getElementById('timeout').innerHTML = '';
-		}
+	if (timeOut != -1){
+		document.getElementById('timeoutTimer').innerHTML = Math.round((timeOut - new Date.getTime()/1000));
 	}
-	catch (e){
-		console.log(e);
+	else{
+		document.getElementById('timeoutTimer').innerHTML = '';
 	}
 }
 setInterval(updateTimeOutText, 200);
