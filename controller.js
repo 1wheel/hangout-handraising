@@ -185,7 +185,7 @@ function buttonClick(){
 			queue.splice(queuePosition, queuePosition + 1);
 			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue)});
 		}
-		else (queuePosition == -1){
+		else {
 			queue.push(gapi.hangout.getParticipantId());	
 			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue)});
 		}
