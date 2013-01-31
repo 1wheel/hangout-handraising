@@ -43,6 +43,9 @@ function onDataChange (){
 			timeOut = new Date().getTime() + 1000*60;
 			currentSpeakerId = queue[0]
 		}
+		if (queue.length == 0){
+			currentSpeakerId = -1;
+		}
 		else {
 			console.log("speaker is the same");
 		}
@@ -178,7 +181,7 @@ function getParticipantNameById(id){
 }
 
 function buttonClick(){
-	if (!buttonDisabled){
+	if (true || !buttonDisabled){
 		buttonDisabled = true;
 		var queuePosition = queue.indexOf(gapi.hangout.getParticipantId());
 		if (queuePosition != -1){
@@ -222,7 +225,7 @@ function updateTimeOutText(){
 		if (isManager() && timeDif < 0 || timeDif < 2000){
 			console.log("Time up!");
 			//force update iff queue is empty 
-			if (queue.length > 1){
+			if (queue.length > 0){
 				queue.shift();
 			}
 			sendNewSpeaker();
