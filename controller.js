@@ -181,11 +181,11 @@ function buttonClick(){
 	if (!buttonDisabled){
 		buttonDisabled = true;
 		var queuePosition = queue.indexOf(gapi.hangout.getParticipantId());
-		if (queuePosition == 0){
-			queue.shift();
+		if (queuePosition != -1){
+			queue.splice(queuePosition, queuePosition + 1);
 			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue)});
 		}
-		else if (queuePosition == -1){
+		else (queuePosition == -1){
 			queue.push(gapi.hangout.getParticipantId());	
 			gapi.hangout.data.submitDelta({'queue':JSON.stringify(queue)});
 		}

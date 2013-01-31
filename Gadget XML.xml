@@ -27,22 +27,21 @@
     <br />
   <div id = "readings">
     <div class = "heading">Readings</div>
-    <ul>
+    <ol>
       <li>
         <div class = "reading">
-          <div class = "author">Thomas Paine:</div>
+          <div class = "author">Thomas Paine:</div> 
           <a href = "url.com">Common Sense</a>
         </div>
       </li>
       <li>
         <div class = "reading">
-          <div class = "author">James Chalmers</div>
+          <div class = "author">James Chalmers:</div>
           <a href = "url.com">Plain Truth, Addressed to the Inhabitants of America (1776)</a>
         </div>
       </li>
-    </ul>
+    </ol>
   </div>
-   <br />
   <div id = "questions">
     <div class = "heading">QUESTIONS</div>
     <ol>
@@ -52,11 +51,6 @@
     </ol>
   </div>
 </div>
-
-
-
-  <br />
-  <br />
 
   <div id="participantsList">
     <div id = "speakerDisplay">
