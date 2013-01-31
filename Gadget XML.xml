@@ -38,7 +38,7 @@
   </div>
   </br>
   <div id = "questions">
-    <div class = "heading">Questions</div>
+    <div class = "heading">QUESTIONS</div>
     <ol>
       <li>What does Paine see as the global significance of the American Struggle for independence?</li>
       <li>Why does Chalmers equate independence with slaver?</li>
@@ -49,6 +49,8 @@
 
 
 
+  </br>
+  </br>
 
   <div id="participantsList">
     <div id = "speakerDisplay">
@@ -57,11 +59,12 @@
       </br>
     </div>
     <div id="queueMembers"></div>    
-    <button id="queueButton" onClick="buttonClick()">Raise My Hand</button>
 
     <div id="otherParticipants"></div>    
 
-  </div>
+  </div>    
+  <button id="queueButton" onClick="buttonClick()">Raise My Hand</button>
+
 
 </body>​
 </html>
