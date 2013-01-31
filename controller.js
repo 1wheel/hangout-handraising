@@ -140,7 +140,7 @@ function sendNewSpeaker(){
 
 function printParticipants(){
 	if (queue.length > 0){
-		document.getElementById('speakerName').innerHTML = getParticipantNameById(queue[0]);
+		document.getElementById('speakerName').innerHTML = getParticipantNameById(queue[0])  + '</br>';
 		document.getElementById('speakerDisplay').style.display = 'inline';
 	}
 	else {

@@ -18,18 +18,48 @@
 </head>
 
 <body id="body">  
-  <div id="container">
-  </div>
   
+<div id = "assignment">
+  <div id = "titleAndDescription">
+    <div id = "title">The American Revolution</div>
+    <div id = "subtitle">Voices Of Freedom</div>
+  </div>
+
+  <div id = "readings">
+    <div class = "heading">Readings</div>
+    <div class = "reading">
+      <div class = "author">Thomas Paine:</div>
+      <a href = "url.com">Common Sense</a>
+    </div>
+    <div class = "reading">
+      <div class = "author">James Chalmers</div>
+      <a href = "url.com">Plain Truth, Addressed to the Inhabitants of America (1776)</a>
+    </div>
+  </div>
+
+  <div id = "questions">
+    <div class = "heading">
+    <ol>
+      <li>What does Paine see as the global significance of the American Struggle for independence?</li>
+      <li>Why does Chalmers equate independence with slaver?</li>
+      <li>How does the language used by the two writers differ, and what does this tell us about their view of politics?</li>
+    </ol>
+  </div>
+</div>
+
+
+
+
   <div id="participantsList">
     <div id = "speakerDisplay">
       <span id="speakerName"></span>
       <span id="timeLeft"></span>
     </div>
-    <div id="queueMembers"></div>
+    <div id="queueMembers"></div>    
+    <button id="queueButton" onClick="buttonClick()">Raise My Hand</button>
+
     <div id="otherParticipants"></div>    
 
-    <button id="queueButton" onClick="buttonClick()">Raise My Hand</button>
   </div>
 
 </body>​
