@@ -36,7 +36,7 @@ function onParticipantsChange() {
 
 function onDataChange (){
 	var state = gapi.hangout.data.getState();
-	if (!typeof state.queue === "undefined"){
+	if (!(typeof state.queue === "undefined")){
 		queue = JSON.parse(state.queue);
 		if (queue.length > 0 && queue [0] != currentSpeakerId){
 			console.log("new speaker");
@@ -44,8 +44,11 @@ function onDataChange (){
 			currentSpeakerID = queue[0]
 		}
 		else {
-			console.log("speakerer is the same");
+			console.log("speaker is the same");
 		}
+	}
+	else{
+		console.log("queue not updated");
 	}
 
 	// //timeOut set to -1 if not defined
