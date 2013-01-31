@@ -24,19 +24,25 @@
     <div id = "title">The American Revolution</div>
     <div id = "subtitle">Voices Of Freedom</div>
   </div>
-  </br>
+    <br />
   <div id = "readings">
     <div class = "heading">Readings</div>
-    <div class = "reading">
-      <div class = "author">Thomas Paine:</div>
-      <a href = "url.com">Common Sense</a>
-    </div>
-    <div class = "reading">
-      <div class = "author">James Chalmers</div>
-      <a href = "url.com">Plain Truth, Addressed to the Inhabitants of America (1776)</a>
-    </div>
+    <ul>
+      <li>
+        <div class = "reading">
+          <div class = "author">Thomas Paine:</div>
+          <a href = "url.com">Common Sense</a>
+        </div>
+      </li>
+      <li>
+        <div class = "reading">
+          <div class = "author">James Chalmers</div>
+          <a href = "url.com">Plain Truth, Addressed to the Inhabitants of America (1776)</a>
+        </div>
+      </li>
+    </ul>
   </div>
-  </br>
+   <br />
   <div id = "questions">
     <div class = "heading">QUESTIONS</div>
     <ol>
@@ -49,14 +55,14 @@
 
 
 
-  </br>
-  </br>
+  <br />
+  <br />
 
   <div id="participantsList">
     <div id = "speakerDisplay">
       <span id="speakerName"></span>
       <span id="timeLeft"></span>
-      </br>
+      <br />
     </div>
     <div id="queueMembers"></div>    
 
