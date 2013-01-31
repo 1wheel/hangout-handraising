@@ -1,7 +1,7 @@
 var participants = [];		//people currently running an instance of the hangout
 var queue = [];				//list of participant ids waiting to speak. 0 is the current speaker
-var timeOut = -1;				//unix time of when the current speaker's turn will end
-var currentSpeakerId;		//id of the current speaker; on updates if it doesn't match queue, manager sets new time
+var timeOut = -1;			//unix time of when the current speaker's turn will end
+var currentSpeakerId = -1;		//id of the current speaker; on updates if it doesn't match queue, manager sets new time
 
 var greenDot = gapi.hangout.av.effects.createImageResource('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAAAlwSFlzAAALEwAACxMBAJqcGAAAAAd0SU1FB90BDwMNIxL4LdEAAAAdaVRYdENvbW1lbnQAAAAAAENyZWF0ZWQgd2l0aCBHSU1QZC5lBwAAAuNJREFUeNrtmy2M2mAYx3/tTsxchliWnDi1kAxBhsE0aTBkbkPg0Ljhlp1CYnF3Dj03wbBnSJOaMywTXLKcOkGyICBnJrhsog9Lj7Xlo3y078s/qSx9/z+e9/N5XoMdy3Z5BpwBOaAgTw44B14CM2AC3ANDYCDPEBg5Fo+7bJ+xI9MvgBJQB97H/Lke0AH6jsU0sQBsFwMoAs0tmI6C0QJuHIs/iQAgxsvAFwnpfWgM1IDruCCMmObfAl+B1xxGd0DVsfi+VwC2y3MJxU8kQ22g6Vj83jkA2+UN8AM4IVmaAXnH4nadl8w1zX+Q6Slp5pE2DaWN2wdgu3wEuiRfXWnr9gDYLp+BS9KjS2lz/DFAaKbJvF8Nx+JqYwDSn7qkWxXH4tvaAGS0H6KGcmGzgxExzz8kdLTfdIo8DVonhA2CLYXMz6fI1koRIMvbAWqqsLhsNgI2Nj8PuLbfx94h699ALXaBssLmEW/lwAiQf//XHre0h9IYeDWPAn8EFDUwj3gsBnWBJvqo+aQLyBneBL2UcSym8wgooZ9K/i5Q1xBAHcCQc/sZeurExEta6KozEy9Lo6tyJl6qSlcVjgCOXcDL0uqqcxPIaAwgY6K5TA33AH5NTLzKDF11b6LO0fcmGpqoewC6igZHAMcuACONAYxMqcPraWi+51g8zhdCHQ0BdOYLIYC+hgD6/wBIBWZPs/Cf+iMAQrKniqrl3wvMdYOXNlJdY/H6FIDkymoaAKhFZYev8VLIqupOPBIIQMhUFQZQXSyu/u9ARCoo2gqabwcVVYedCDVRK1s0IyT7HQhAqqnyCgHIh1WSh54JSl1dRQHzlagK8shDUamwbKTYfCOqSnQpAIFwBVyk0PzFsjphWOPCRMqKphurmF8LgEBIQ/F0ZVnYbwxAIOh7ZcY3O5wmbLHUxiuGvl33Re2vzcXKDcqHs8C7PW+lx/LNbBzzsSNgIRr0vDobAkO/y9MRMBJ9ff4vhV3btM/DqFkAAAAASUVORK5CYII=');
 var greenDotOverlay = greenDot.createOverlay(
@@ -28,26 +28,41 @@ gapi.hangout.onApiReady.add(function(eventObj){
 	}
 });
 
-function onParticipantsChange(eventObj) {
-	participants = eventObj.participants;
+function onParticipantsChange() {
+	participants = gapi.hangout.getEnabledParticipants();
 
 	onServerUpdate();
 };
 
-function onDataChange (eventObj){
+function onDataChange (){
 	var state = gapi.hangout.data.getState();
 	if (!typeof state.queue === "undefined"){
 		queue = JSON.parse(state.queue);
+		if (queue.length > 0 && queue [0] != currentSpeakerId){
+			console.log("new speaker");
+			timeOut = new Date().getTime() + 1000*60;
+			currentSpeakerID = queue[0]
+		}
+		else {
+			console.log("speakerer is the same");
+		}
 	}
 
-	//timeOut set to -1 if not defined
-	if (typeof state.timeOut === "undefined" || typeof state.timeOut === "undefined"){
-		console.log('valid timeouts not found');
-		timeOut = -1;
-	}
-	else{
-		timeOut = JSON.parse(state.timeOut) - (JSON.parse(state.serverTime) - new Date().getTime());
-	}
+	// //timeOut set to -1 if not defined
+	// if (typeof state.timeOut === "undefined" || typeof state.timeOut === "undefined"){
+	// 	console.log('valid timeouts not found');
+	// 	timeOut = -1;
+	// }
+	// else{
+	// 	var serverTime = JSON.parse(state.timeOut);
+	// 	if (Math.abs(serverTime - (timeOut - new Date().getTime()) > 2000){
+	// 		console.log("time dif, updating local time from " + timeOut + " to " + serverTime);
+	// 		timeOut = serverTime + new Date().getTime();
+	// 	}
+	// 	else {
+	// 		console.log("time dif small not updating from " + timeOut + " to " + serverTime);
+	// 	}
+	// }
 	
 	onServerUpdate();
 }
@@ -100,13 +115,16 @@ function onServerUpdate(){
 				updateRequire = true;
 			}
 		}
-		if (timeOut == -1 || new Date().getTime() > timeOut){
-			console.log('new timeout value required');
-			updateRequired = true;
-		}
+		// if (timeOut == -1 || new Date().getTime() > timeOut){
+		// 	console.log('new timeout value required');
+		// 	updateRequired = true;
+		// }
 		if (updateRequired){
 			console.log("sending new update");
 			sendNewSpeaker();
+		}
+		else{
+			console.log("no update required");
 		}
 	}
 }
@@ -114,9 +132,7 @@ function onServerUpdate(){
 //sends queue and updated timestamps
 function sendNewSpeaker(){
 	timeOut = new Date().getTime() + 1000*60;
-	gapi.hangout.data.submitDelta({	'queue':JSON.stringify(queue), 
-									'timeOut': JSON.stringify(timeOut),
-									'serverTime': JSON.stringify(new Date().getTime())});
+	gapi.hangout.data.submitDelta({	'queue':JSON.stringify(queue)}
 }
 
 function printParticipants(){

@@ -27,8 +27,19 @@ first load
 	check if slybuss
 	do anything ot queue? auto join?
 
+change TimeOut stored server side to time remaining in order to fix different computer times
+add line return after yellow
+run data load on page load
+
+how to send link to app?
 
 sylbuss 
 	what if:
 		no tabs and slybuss just scrollable onto of queue list and controls
 
+	which slbuss gets loaded? first person w/ url?
+
+63 12
+31 24
+15 48
+7
