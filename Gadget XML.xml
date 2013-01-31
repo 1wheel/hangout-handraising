@@ -24,7 +24,7 @@
     <div id = "title">The American Revolution</div>
     <div id = "subtitle">Voices Of Freedom</div>
   </div>
-
+  </br>
   <div id = "readings">
     <div class = "heading">Readings</div>
     <div class = "reading">
@@ -36,9 +36,9 @@
       <a href = "url.com">Plain Truth, Addressed to the Inhabitants of America (1776)</a>
     </div>
   </div>
-
+  </br>
   <div id = "questions">
-    <div class = "heading">
+    <div class = "heading">Questions</div>
     <ol>
       <li>What does Paine see as the global significance of the American Struggle for independence?</li>
       <li>Why does Chalmers equate independence with slaver?</li>
@@ -54,6 +54,7 @@
     <div id = "speakerDisplay">
       <span id="speakerName"></span>
       <span id="timeLeft"></span>
+      </br>
     </div>
     <div id="queueMembers"></div>    
     <button id="queueButton" onClick="buttonClick()">Raise My Hand</button>
