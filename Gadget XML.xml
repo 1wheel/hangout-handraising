@@ -19,14 +19,14 @@
 
 <body id="body">  
   
-<div id = "assignment">
+<div id = "class0" class = "assignment">
   <div id = "titleAndDescription">
     <div id = "title">The American Revolution</div>
     <div id = "subtitle">Voices Of Freedom</div>
   </div>
     <br />
   <div id = "readings">
-    <div class = "heading">Readings</div>
+    <div class = "heading">READINGS</div>
     <ol>
       <li>
         <div class = "reading">
@@ -48,6 +48,39 @@
       <li>What does Paine see as the global significance of the American Struggle for independence?</li>
       <li>Why does Chalmers equate independence with slaver?</li>
       <li>How does the language used by the two writers differ, and what does this tell us about their view of politics?</li>
+    </ol>
+  </div>
+</div>
+
+<div id = "class1" class = "assignment">
+  <div id = "titleAndDescription">
+    <div id = "title">The Civil War</div>
+    <div id = "subtitle">Voices Of Freedom</div>
+  </div>
+    <br />
+  <div id = "readings">
+    <div class = "heading">READINGS</div>
+    <ol>
+      <li>
+        <div class = "reading">
+          <div class = "author">Frederick Douglass:</div> 
+          <a href = "http://www.lib.rochester.edu/index.cfm?page=2945">What to a slave is the 4th of July?</a>
+        </div>
+      </li>
+      <li>
+        <div class = "reading">
+          <div class = "author">Abraham Lincoln:</div>
+          <a href = "http://en.wikipedia.org/wiki/Gettysburg_Address#Text_of_Gettysburg_Address">Gettysburg Address/a>
+        </div>
+      </li>
+    </ol>
+  </div>
+  <div id = "questions">
+    <div class = "heading">QUESTIONS</div>
+    <ol>
+      <li>What is Lincoln referring to when he says, "of the people, by the people, for the people”?</li>
+      <li>How does Lincoln describe the United States?</li>
+      <li>Lincoln never mentions Gettysburg in his Address.  Why do you think that is?</li>
     </ol>
   </div>
 </div>
