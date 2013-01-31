@@ -132,7 +132,7 @@ function onServerUpdate(){
 //sends queue and updated timestamps
 function sendNewSpeaker(){
 	timeOut = new Date().getTime() + 1000*60;
-	gapi.hangout.data.submitDelta({	'queue':JSON.stringify(queue)}
+	gapi.hangout.data.submitDelta({	'queue':JSON.stringify(queue)});
 }
 
 function printParticipants(){
