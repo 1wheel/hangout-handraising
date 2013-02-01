@@ -74,6 +74,7 @@ function onDataChange (){
 	//add a check to see if other client has changed the lesson?
 	if (checkServerLesson && !(typeof state.lesson === "undefined")){
 		console.log("lesson being updated from server");
+		document.getElementById("class" + currentLesson).style.display = ("none");
 		currentLesson = JSON.parse(state.lesson);
 		updateLessonDisplay();
 		checkServerLesson = false;
