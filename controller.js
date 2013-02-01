@@ -29,8 +29,14 @@ gapi.hangout.onApiReady.add(function(eventObj){
 		else{
 			//lesson defined, upload to server
 			currentLesson = gadgets.views.getParams()['appData'];
-			gapi.hangout.data.submitDelta({	'lesson':JSON.stringify(currentLesson)});
-			console.log("lesson " + currentLesson + " selected");
+			if (currentLesson == 0){
+				console.log("0 picked");
+				checkServerLesson = true;
+			}
+			else{
+				gapi.hangout.data.submitDelta({	'lesson':JSON.stringify(currentLesson)});
+				console.log("lesson " + currentLesson + " selected");
+			}
 		}
 		updateLessonDisplay();
 
