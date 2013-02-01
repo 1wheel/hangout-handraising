@@ -8,12 +8,45 @@
     <![CDATA[
 	<script src="//hangoutsapi.talkgadget.google.com/hangouts/_/api/hangout.js?v=1.1"></script>
     
-	<link rel="stylesheet" href="https://raw.github.com/1wheel/hangout-handraising/master/style.css" />	
+
 	<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Hangout Handraising</title>
+  <meta charset="UTF-8">
+  <title>Hangout Handraising</title>
+
+  <style media="screen" type="text/css">
+    #speakerName{
+      color:green;
+    }
+
+    #queueMembers{
+      color:#FFB90F;
+    }
+
+    #participantsList {
+    }
+
+    .title{
+      font-size: 120%;
+      font-weight: bold;
+    }
+
+    .subtitle{
+      font-size:110%;
+      font-style: italic;
+    }
+
+    .heading{
+      text-decoration: underline;
+      font-style: bold;
+    }
+
+    .assignment{
+      display: none;
+    }
+  </style>
+
 	<script type="text/javascript" src="https://raw.github.com/1wheel/hangout-handraising/master/controller.js"></script>
 </head>
 
