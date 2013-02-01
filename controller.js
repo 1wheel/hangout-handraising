@@ -74,11 +74,11 @@ function onDataChange (){
 	//add a check to see if other client has changed the lesson?
 	if (checkServerLesson && !(typeof state.lesson === "undefined")){
 		console.log("lesson being updated from server");
-		currentLesson = state.lesson;
+		currentLesson = JSON.parse(state.lesson);
 		updateLessonDisplay();
 		checkServerLesson = false;
 	}
-	
+
 	// //timeOut set to -1 if not defined
 	// if (typeof state.timeOut === "undefined" || typeof state.timeOut === "undefined"){
 	// 	console.log('valid timeouts not found');
