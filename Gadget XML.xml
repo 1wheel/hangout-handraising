@@ -51,8 +51,15 @@
 </head>
 
 <body id="body">  
-  
-<div id = "class0" class = "assignment">
+
+<div id = "class0">
+  <h1>Pick a Lesson to Start</h1>
+  <button onClick="changeLesson(1)">The American Revolution</button>
+  <button onClick="changeLesson(2)">The Civil War</button>
+</div>
+
+
+<div id = "class1" class = "assignment">
   <div class = "titleAndDescription">
     <div class = "title">The American Revolution</div>
     <div id = "subtitle">Voices Of Freedom</div>
@@ -85,7 +92,7 @@
   </div>
 </div>
 
-<div id = "class1" class = "assignment">
+<div id = "class0" class = "assignment">
   <div class = "titleAndDescription">
     <div class = "title">The Civil War</div>
     <div class = "subtitle">Voices Of Freedom</div>
