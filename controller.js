@@ -20,8 +20,9 @@ var buttonDisabled = false;	//true when button is clicked to prevent joining the
 gapi.hangout.onApiReady.add(function(eventObj){
 	if (eventObj.isApiReady) {		
 		//checks to see if lesson was passed in url
-		if (typeof gadgets.views.getParams()['appData'] === "undefined" || typeof gadgets.views.getParams()['appData'] === 0) {
+		if (typeof gadgets.views.getParams()['appData'] === "undefined" ||  gadgets.views.getParams()['appData'] === 0) {
 			//no lesson passed, set to default and check server for lesson
+			console.log("no lesson selected");
 			currentLesson = 0;
 			checkServerLesson = true;
 		}
@@ -29,6 +30,7 @@ gapi.hangout.onApiReady.add(function(eventObj){
 			//lesson defined, upload to server
 			currentLesson = gadgets.views.getParams()['appData'];
 			gapi.hangout.data.submitDelta({	'lesson':JSON.stringify(currentLesson)});
+			console.log("lesson " + currentLesson + " selected");
 		}
 		updateLessonDisplay();
 
