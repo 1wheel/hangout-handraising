@@ -20,29 +20,29 @@
 <body id="body">  
   
 <div id = "class0" class = "assignment">
-  <div id = "titleAndDescription">
-    <div id = "title">The American Revolution</div>
+  <div class = "titleAndDescription">
+    <div class = "title">The American Revolution</div>
     <div id = "subtitle">Voices Of Freedom</div>
   </div>
     <br />
-  <div id = "readings">
+  <div class = "readings">
     <div class = "heading">READINGS</div>
     <ol>
       <li>
         <div class = "reading">
           <div class = "author">Thomas Paine:</div> 
-          <a href = "url.com">Common Sense</a>
+          <a target="_new" href = "url.com">Common Sense</a>
         </div>
       </li>
       <li>
         <div class = "reading">
           <div class = "author">James Chalmers:</div>
-          <a href = "url.com">Plain Truth, Addressed to the Inhabitants of America (1776)</a>
+          <a target="_new" href = "url.com">Plain Truth, Addressed to the Inhabitants of America (1776)</a>
         </div>
       </li>
     </ol>
   </div>
-  <div id = "questions">
+  <div class = "questions">
     <div class = "heading">QUESTIONS</div>
     <ol>
       <li>What does Paine see as the global significance of the American Struggle for independence?</li>
@@ -52,30 +52,30 @@
   </div>
 </div>
 
-<div id = "class1" class = "assignment">
-  <div id = "titleAndDescription">
-    <div id = "title">The Civil War</div>
-    <div id = "subtitle">Voices Of Freedom</div>
+<div class = "class1" class = "assignment">
+  <div class = "titleAndDescription">
+    <div class = "title">The Civil War</div>
+    <div class = "subtitle">Voices Of Freedom</div>
   </div>
     <br />
-  <div id = "readings">
+  <div class = "readings">
     <div class = "heading">READINGS</div>
     <ol>
       <li>
         <div class = "reading">
           <div class = "author">Frederick Douglas:</div> 
-          <a href = "http://www.lib.rochester.edu/index.cfm?page=2945">What to a slave is the 4th of July?</a>
+          <a target="_new" href = "http://www.lib.rochester.edu/index.cfm?page=2945">What to a slave is the 4th of July?</a>
         </div>
       </li>
       <li>
         <div class = "reading">
           <div class = "author">Abraham Lincoln:</div>
-          <a href = "http://en.wikipedia.org/wiki/Gettysburg_Address#Text_of_Gettysburg_Address">Gettysburg Address</a>
+          <a target="_new" href = "http://en.wikipedia.org/wiki/Gettysburg_Address#Text_of_Gettysburg_Address">Gettysburg Address</a>
         </div>
       </li>
     </ol>
   </div>
-  <div id = "questions">
+  <div class = "questions">
     <div class = "heading">QUESTIONS</div>
     <ol>
       <li>What is Lincoln referring to when he says, "of the people, by the people, for the people”?</li>
