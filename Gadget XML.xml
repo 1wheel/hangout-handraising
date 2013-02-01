@@ -52,10 +52,11 @@
 
 <body id="body">  
 
-<div id = "class0">
-  <h1>Pick a Lesson to Start</h1>
-  <button onClick="changeLesson(1)">The American Revolution</button>
-  <button onClick="changeLesson(2)">The Civil War</button>
+<div id = "class0" class = "assignment">
+  <h1>Pick a Lesson</h1>
+  <button onClick="changeLesson('1')">The American Revolution</button>
+  <br />
+  <button onClick="changeLesson('2')">The Civil War</button>
 </div>
 
 

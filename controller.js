@@ -267,7 +267,9 @@ function updateLessonDisplay(){
 	document.getElementById("class" + currentLesson).style.display = ("block");
 }
 
+//updates
 function changeLesson(num){
+	console.log("changing lesson to " + num);
 	document.getElementById("class" + currentLesson).style.display = ("none")
 	currentLesson = gadgets.views.getParams()['appData'];
 	gapi.hangout.data.submitDelta({	'lesson':JSON.stringify(currentLesson)});
