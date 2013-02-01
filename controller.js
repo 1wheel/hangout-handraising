@@ -20,7 +20,7 @@ var buttonDisabled = false;	//true when button is clicked to prevent joining the
 gapi.hangout.onApiReady.add(function(eventObj){
 	if (eventObj.isApiReady) {		
 		//checks to see if lesson was passed in url
-		if (typeof gadgets.views.getParams()['appData'] === "undefined") {
+		if (typeof gadgets.views.getParams()['appData'] === "undefined" || typeof gadgets.views.getParams()['appData'] === 0) {
 			//no lesson passed, set to default and check server for lesson
 			currentLesson = 0;
 			checkServerLesson = true;
