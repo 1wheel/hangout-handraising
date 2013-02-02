@@ -113,16 +113,21 @@ function onServerUpdate(){
 	printParticipants();
 	clearOverlay();
 	var queuePosition = queue.indexOf(gapi.hangout.getParticipantId());
+	var queueButton = document.getElementById('queueButton');
 	if (queuePosition == 0){
 		placeGreenDot();
-		document.getElementById('queueButton').innerHTML = "I Am Done";
+		queueButton.innerHTML = "I Am Done";
+		queueButton.style.background = "rgb(217, 149, 148)";
 	}
 	else if (queuePosition > 0){
 		placeYellowDot();
-		document.getElementById('queueButton').innerHTML = "Put Hand Down";
+		queueButton.innerHTML = "Raise My Hand";		
+		queueButton.style.background = "rgb(191, 191, 191)";
+
 	}
 	else{
-		document.getElementById('queueButton').innerHTML = "Raise My Hand";
+		queueButton.innerHTML = "Raise My Hand";		
+		queueButton.style.background = "rgb(217, 149, 148)";
 	}
 
 	//lowest order participant manages time updates 
