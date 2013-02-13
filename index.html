@@ -1,4 +1,4 @@
-	<!DOCTYPE html>
+  <!DOCTYPE html>
 <html>
 <head>
   <meta charset="UTF-8">
@@ -16,23 +16,36 @@
     #participantsList {
     }
 
+    #participate{
+      font-size: 150%;
+      font-weight: bold;
+      font-style: italic;
+      background-color: rgb(182, 204, 228);
+    }
+
     .title{
-      font-size: 120%;
+      font-size: 130%;
       font-weight: bold;
     }
 
     .subtitle{
-      font-size:110%;
+      font-size:120%;
       font-style: italic;
     }
 
+    h1{
+      font-size: 120%;
+    }
+
     .heading{
-      text-decoration: underline;
-      font-style: bold;
+      font-weight: bold;
+      background-color: rgb(184, 204, 228);
+      padding: 5px;
+
     }
 
     .assignment{
-      display: none;
+      display: ;
     }
 
     #queueButton {
@@ -42,10 +55,6 @@
       width: 296px;
       background: rgb(217, 149, 148);
       border: 2px solid black;
-
-      position: absolute;
-      bottom: 40px;
-      width: 296px;
 
       color: black;
       text-align: center;
@@ -67,16 +76,22 @@
       cursor:pointer
 
     }
-    
+ 
+  a.button2 {
+      text-decoration: none;
+  }
+   
   a.button:hover {
   }
 
   </style>
 
-	<script type="text/javascript" src="https://raw.github.com/1wheel/hangout-handraising/master/controller.js"></script>
+  <script type="text/javascript" src="https://raw.github.com/1wheel/hangout-handraising/master/controller.js"></script>
 </head>
 
 <body id="body">  
+
+<div id = "participate">Participate</div>
 
 <div id = "class0" class = "assignment">
   <h1>Pick a Lesson</h1>
@@ -89,7 +104,7 @@
 <div id = "class1" class = "assignment">
   <div class = "titleAndDescription">
     <div class = "title">The American Revolution</div>
-    <div id = "subtitle">Voices Of Freedom</div>
+    <div class = "subtitle">Voices Of Freedom</div>
   </div>
     <br />
   <div class = "readings">
