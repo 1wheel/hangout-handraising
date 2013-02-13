@@ -1,6 +1,6 @@
 var participants = [];		//people currently running an instance of the hangout
 var queue = [];				//list of participant ids waiting to speak. 0 is the current speaker
-var timeOut = -1;			//unix time of when the current speaker's turn will end
+var talkStart = -1;			//unix time of when current speaker started
 var currentSpeakerId = -1;	//id of the current speaker; on updates if it doesn't match queue, manager sets new time
 var currentLesson = -1;
 var checkServerLesson = false;
@@ -64,13 +64,20 @@ function onDataChange (){
 	var state = gapi.hangout.data.getState();
 	if (!(typeof state.queue === "undefined")){
 		queue = JSON.parse(state.queue);
-		if (queue.length > 0 && queue[0] != currentSpeakerId){
-			console.log("new speaker");
-			timeOut = new Date().getTime() + 1000*60;
-			currentSpeakerId = queue[0]
-		}
-		if (queue.length == 0){
-			currentSpeakerId = -1;
+		if (queue[0] != currentSpeakerId){
+			//old speaker ended; update participantTimes
+			if (currentSpeakerId != -1){
+				participantTimes[currentSpeakerId] = getParticipantTimeById(currentSpeakerId) + talkTime();
+			}
+			talkStart = new Date().getTime();
+			if (queue.length > 0){
+				console.log("new speaker");
+				currentSpeakerId = queue[0]
+			}
+			if (queue.length == 0){
+				console.log("active speaker did not change");
+				currentSpeakerId = -1;
+			}
 		}
 		else {
 			console.log("speaker is the same");
@@ -205,7 +212,7 @@ function printParticipants(){
 	var memberHTML = "";
 	for (var i = 0; i < participants.length; i++){
 		if (queue.indexOf(participants[i].id) == -1){
-			memberHTML = memberHTML + participants[i].person.displayName + '</br>';
+			memberHTML = memberHTML + getParticipantHTML(participants[i].id);
 		}
 	}
 	document.getElementById('otherParticipants').innerHTML = memberHTML;
@@ -276,10 +283,11 @@ function isManager(){
 
 //what happens if manager is alt tabbed?
 function updateTimeOutText(){
-	if (timeOut != -1 && queue.length > 0){
-		var timeDif = timeOut - new Date().getTime();
-		document.getElementById('timeLeft').innerHTML = '  - ' + Math.max(0, Math.round(timeDif/1000)) + ' secounds';
-		if (isManager() && timeDif < 0 || timeDif < 2000){
+	if (talkStart != 0 && queue.length > 0){
+		document.getElementById('timeLeft').innerHTML = talkTime() + getParticipantTimeById(currentSpeakerId);
+
+		//should speaker be forced to stop talking?
+		if (isManager() && talkTime() > 360){
 			console.log("Time up!");
 			//force update iff queue is empty 
 			if (queue.length > 0){
@@ -293,7 +301,16 @@ function updateTimeOutText(){
 	}
 }
 
-//
+//returns the number of secounds the current speaker has been talking
+function talkTime(){
+	if (talkStart != 0){
+		return Math.max(0, Math.round((talkStart - new Date().getTime())/1000));
+	}
+	else{
+		return 0;
+	}
+}
+
 function updateLessonDisplay(){
 	document.getElementById("class" + currentLesson).style.display = ("block");
 }
