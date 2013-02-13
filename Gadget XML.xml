@@ -181,6 +181,7 @@
     <br />
 
   <div id="participantsList">
+    <div class = "heading">Participants</div>
     <div id = "speakerDisplay">
       <span id="speakerName"></span>
       <span id="timeLeft"></span>
@@ -191,6 +192,7 @@
     <div id="otherParticipants"></div>    
 
   </div>    
+  <br />
   <a onClick="buttonClick()" id="queueButton" class = "button">Raise My Hand</a>
 
 
