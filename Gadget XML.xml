@@ -29,9 +29,7 @@
 
     #participate{
       font-size: 150%;
-      font-weight: bold;
       font-style: italic;
-      background-color: rgb(182, 204, 228);
     }
     .participant{
       display:inline-block;
@@ -118,7 +116,7 @@
 
 <body id="body">  
 
-<div id = "participate">Participate</div>
+<div id = "participate" class = "heading">Participate</div>
 
 <div id = "class0" class = "assignment">
   <h1>Pick a Lesson</h1>
