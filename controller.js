@@ -193,7 +193,7 @@ function printParticipants(){
 	var queueHTML = "";
 	if (queue.length > 1){
 		for (var i = 1; i < queue.length; i++){
-			queueHTML = queueHTML + "<div class = 'participant'>" + getParticipantHTML(queue[i]) + "</div>";
+			queueHTML = queueHTML + getParticipantHTML(queue[i]);
 		}	
 		document.getElementById('queueMembers').innerHTML = queueHTML;
 		document.getElementById('queueMembers').style.display = 'inline';
@@ -233,7 +233,7 @@ function getParticipantHTML(id){
 	var rv = "<div class = 'participant'>";
 	rv = rv + "<div class = 'participantName'>" + getParticipantNameById(id) + "</div>";
 	rv = rv + "<div class = 'participantTime'>" + getParticipantTimeById(id) + "</div>";
-	rv = rv + <"/div">;
+	rv = rv + "</div>";
 	return rv;
 }
 
