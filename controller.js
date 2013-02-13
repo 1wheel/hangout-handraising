@@ -304,7 +304,7 @@ function updateTimeOutText(){
 //returns the number of secounds the current speaker has been talking
 function talkTime(){
 	if (talkStart != 0){
-		return Math.max(0, Math.round((talkStart - new Date().getTime())/1000));
+		return Math.max(0, Math.round((new Date().getTime() - talkStart)/1000));
 	}
 	else{
 		return 0;
