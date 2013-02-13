@@ -281,7 +281,7 @@ function isManager(){
 
 //what happens if manager is alt tabbed?
 function updateTimeOutText(){
-	if (talkStart != 0 && queue.length > 0){
+	if (talkStart != -1 && queue.length > 0){
 		document.getElementById('speakerTime').innerHTML = talkTime() + getParticipantTimeById(currentSpeakerId);
 
 		//should speaker be forced to stop talking?
@@ -301,7 +301,7 @@ function updateTimeOutText(){
 
 //returns the number of secounds the current speaker has been talking
 function talkTime(){
-	if (talkStart != 0){
+	if (talkStart != -1){
 		return Math.max(0, Math.round((new Date().getTime() - talkStart)/1000));
 	}
 	else{
