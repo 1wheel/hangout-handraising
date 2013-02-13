@@ -237,7 +237,7 @@ function getParticipantTimeById(id){
 function getParticipantHTML(id){
 	var rv = "<div class = 'participant'>";
 	rv = rv + "<div class = 'participantName'>" + getParticipantNameById(id) + "</div>";
-	rv = rv + "<div class = 'participantTime'>" + getParticipantTimeById(id) + "</div>";
+	rv = rv + "<div class = 'participantTime'>" + formatTime(getParticipantTimeById(id)) + "</div>";
 	rv = rv + "</div>";
 	return rv;
 }
@@ -282,7 +282,7 @@ function isManager(){
 //what happens if manager is alt tabbed?
 function updateTimeOutText(){
 	if (talkStart != -1 && queue.length > 0){
-		document.getElementById('speakerTime').innerHTML = talkTime() + getParticipantTimeById(currentSpeakerId);
+		document.getElementById('speakerTime').innerHTML = formatTime(talkTime() + getParticipantTimeById(currentSpeakerId));
 
 		//should speaker be forced to stop talking?
 		if (isManager() && talkTime() > 360){
@@ -307,6 +307,14 @@ function talkTime(){
 	else{
 		return 0;
 	}
+}
+
+function formatTime(s){
+	var min = parseInt(s/60);
+	var sec = s % 60;
+	var rv = ((min < 10) ? "0" : "") + min + ":";
+	rv= rv + ((sec < 10) ? "0" : "") + sec;
+	return rv;
 }
 
 function updateLessonDisplay(){

@@ -60,6 +60,7 @@
     }
 
     h1{
+      padding: 5px;
       font-size: 120%;
     }
 
@@ -203,7 +204,7 @@
       <div id="speakerName" class = "participantName"></div>
       <div id="speakerTime" class = "participantTime"></div>
     </div>
-    
+
     <div id="queueMembers"></div>    
 
     <div id="otherParticipants"></div>    
