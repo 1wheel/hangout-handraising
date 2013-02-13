@@ -196,11 +196,14 @@
     <br />
 
   <div id="participantsList">
+
     <div class = "heading">Participants</div>
+
     <div id = "speakerDisplay" class = "participant">
       <div id="speakerName" class = "participantName"></div>
       <div id="speakerTime" class = "participantTime"></div>
     </div>
+    
     <div id="queueMembers"></div>    
 
     <div id="otherParticipants"></div>    

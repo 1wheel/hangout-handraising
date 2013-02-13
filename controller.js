@@ -191,7 +191,7 @@ function sendNewSpeaker(){
 function printParticipants(){
 	if (queue.length > 0){
 		document.getElementById('speakerName').innerHTML = getParticipantNameById(queue[0]);
-		document.getElementById('speakerDisplay').style.display = 'inline';
+		document.getElementById('speakerDisplay').style.display = 'inline-block';
 	}
 	else {
 		document.getElementById('speakerDisplay').style.display = 'none';
@@ -203,7 +203,7 @@ function printParticipants(){
 			queueHTML = queueHTML + getParticipantHTML(queue[i]);
 		}	
 		document.getElementById('queueMembers').innerHTML = queueHTML;
-		document.getElementById('queueMembers').style.display = 'inline';
+		document.getElementById('queueMembers').style.display = 'inline-block';
 	}
 	else {
 		document.getElementById('queueMembers').style.display = 'none';
