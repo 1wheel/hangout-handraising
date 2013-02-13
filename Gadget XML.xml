@@ -36,7 +36,7 @@
     .participant{
       display:inline-block;
       padding: 10px;
-      width: 300px;
+      width: 280px;
     }
 
     .participantName{
@@ -199,7 +199,7 @@
     <div class = "heading">Participants</div>
     <div id = "speakerDisplay" class = "participant">
       <div id="speakerName" class = "participantName"></div>
-      <div id="timeLeft" class = "participantTime"></div>
+      <div id="speakerTime" class = "participantTime"></div>
     </div>
     <div id="queueMembers"></div>    
 

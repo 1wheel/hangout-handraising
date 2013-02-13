@@ -234,8 +234,6 @@ function getParticipantTimeById(id){
 	return participantTimes[id];
 }
 
-
-
 function getParticipantHTML(id){
 	var rv = "<div class = 'participant'>";
 	rv = rv + "<div class = 'participantName'>" + getParticipantNameById(id) + "</div>";
@@ -284,7 +282,7 @@ function isManager(){
 //what happens if manager is alt tabbed?
 function updateTimeOutText(){
 	if (talkStart != 0 && queue.length > 0){
-		document.getElementById('timeLeft').innerHTML = talkTime() + getParticipantTimeById(currentSpeakerId);
+		document.getElementById('speakerTime').innerHTML = talkTime() + getParticipantTimeById(currentSpeakerId);
 
 		//should speaker be forced to stop talking?
 		if (isManager() && talkTime() > 360){
