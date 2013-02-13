@@ -33,6 +33,21 @@
       font-style: italic;
       background-color: rgb(182, 204, 228);
     }
+    .participant{
+      display:inline-block;
+      padding: 10px;
+      width: 300px;
+    }
+
+    .participantName{
+      display:inline-block;
+    }
+
+    .participantTime{
+      display:inline-block;
+      float: right;
+    }
+
 
     .title{
       font-size: 130%;
@@ -182,10 +197,9 @@
 
   <div id="participantsList">
     <div class = "heading">Participants</div>
-    <div id = "speakerDisplay">
-      <span id="speakerName"></span>
-      <span id="timeLeft"></span>
-      <br />
+    <div id = "speakerDisplay" class = "participant">
+      <div id="speakerName" class = "participantName"></div>
+      <div id="timeLeft" class = "participantTime"></div>
     </div>
     <div id="queueMembers"></div>    
 
