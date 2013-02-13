@@ -56,7 +56,7 @@
     }
 
     .assignment{
-      display: ;
+      display: none;
     }
 
     #queueButton {
